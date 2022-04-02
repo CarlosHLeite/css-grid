@@ -46,7 +46,7 @@ body {
   margin: 0 auto 20px auto;
   display: grid;
 }
-                                                        
+
 .center-me {
   margin: auto;
   color: rgb(113, 113, 175);
@@ -91,17 +91,26 @@ body {
   margin: 0;
 }
 
-.layout {
-  
+@media screen and (min-width: 850px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-areas:
+      "headerarea headerarea"
+      "s main"
+      "s footer";
+  }
 }
 
 .header {
   background-color: rgb(113, 113, 175);
   color: #fff;
   padding: 20px;
+  grid-area: headerarea;
 }
 
 .sidebar {
+  grid-area: s;
   background-color: #ddd;
   font-size: 0.8rem;
   color: #999;
@@ -109,11 +118,14 @@ body {
 }
 
 .main {
+  grid-area: main;
   padding: 20px;
   line-height: 1.7;
 }
 
 .footer {
+  grid-area: footer;
+  align-self: end;
   background-color: rgb(77, 77, 77);
   color: #fff;
   padding: 15px;
@@ -123,6 +135,9 @@ body {
 .responsive-example {
   max-width: 1100px;
   margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
 }
 
 .responsive-item {
@@ -136,6 +151,10 @@ body {
 
 .art-banner {
   background-color: rgb(0, 80, 112);
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20px 1fr 1fr 1fr 20px;
+  grid-template-rows: 20px 1fr 1fr 1fr 20px;
 }
 
 .art-banner-bg {
@@ -143,15 +162,26 @@ body {
   background: url("https://images.unsplash.com/photo-1574492543172-b37ab0de758c?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMzY4Nzg2MA&ixlib=rb-1.2.1&q=85")
     center center no-repeat;
   background-size: cover;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
 }
 
 .banner-text {
   color: #fff;
   font-size: 8vw;
   font-weight: bold;
+  grid-column: 2 / span 2;
+  grid-row: 3;
+  align-self: center;
+  justify-self: center;
 }
 
 .badge {
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
   background-color: rgb(255, 41, 123);
   color: #fff;
   font-size: 2.5vw;
@@ -163,7 +193,7 @@ body {
 }
 
 .badge p {
-  
+  margin: auto;
 }
 
 .art-banner::before {
@@ -171,6 +201,8 @@ body {
   opacity: 0.85;
   border-top: 5px solid rgb(255, 41, 123);
   border-right: 5px solid rgb(255, 41, 123);
+  grid-column: 4;
+  grid-row: 2 / span 3;
 }
 
 .art-banner::after {
@@ -178,4 +210,6 @@ body {
   opacity: 0.85;
   border-bottom: 5px solid rgb(255, 41, 123);
   border-left: 5px solid rgb(255, 41, 123);
+  grid-column: 2;
+  grid-row: 4;
 }
